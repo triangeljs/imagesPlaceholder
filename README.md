@@ -22,5 +22,5 @@
 
 ## 图片库位置
 
-1、默认用法的图片都放在public/pics目录下
-2、分类用法的图片放在public/picCategory目录下对应的文件夹里
+1. 默认用法的图片都放在public/pics目录下
+2. 分类用法的图片放在public/picCategory目录下对应的文件夹里
