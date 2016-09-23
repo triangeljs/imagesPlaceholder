@@ -2,10 +2,31 @@
 <html lang="zh">
 <head>
   <meta charset="UTF-8">
-  <title><%= title %></title>
+  <title>图片合成</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <script type="text/javascript" src="http://www.china.com.cn/lib/jquery-1.11.0.min.js"></script>
 </head>
 <body>
-  <h1><%= title %></h1>
-  <p>Welcome to <%= title %></p>
+  <div class="picOptions">
+    <form method="POST" action="/" id="picForm">
+      <input type="text" name="picWidth" placeholder="图片宽度" value="<%= picWidth %>">
+      <input type="text" name="picHeight" placeholder="图片高度" value="<%= picHeight %>">
+      <select name="picAttr">
+        <option value="0"<%if(picAttr == 0) {%> selected<%}%>>图片属性</option>
+        <option value="1"<%if(picAttr == 1) {%> selected<%}%>>风景</option>
+        <option value="2"<%if(picAttr == 2) {%> selected<%}%>>汽车</option>
+        <option value="3"<%if(picAttr == 3) {%> selected<%}%>>人物</option>
+      </select>
+      <input type="button" value="图片合成" class="picBtn">
+    </form>
+  </div>
+  <% if (picArr.length) { %>
+  <ul class="showPic">
+    <% picArr.forEach(function(picSrc){ %>
+    <li><img src="<%= picSrc %>" /></li>
+    <% }) %>
+  </ul>
+  <% } %>
+  <script type="text/javascript" src="/javascripts/index.js"></script>
 </body>
 </html>

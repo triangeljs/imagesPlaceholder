@@ -1,7 +1,9 @@
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
+var fs = require('fs');
 var logger = require('morgan');
+var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
@@ -9,6 +11,7 @@ var routes = require('./routes/index');
 var img = require('./routes/img');
 
 var app = express();
+var accessLogStream = fs.createWriteStream(path.join(__dirname, 'logs', 'access.log'), {flags: 'a'});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -17,6 +20,7 @@ app.set('view engine', 'ejs');
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
+app.use(logger('combined', {stream: accessLogStream}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());

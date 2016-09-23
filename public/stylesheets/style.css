@@ -1,8 +1,9 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+@charset "utf-8";
+* { margin: 0px; padding: 0px; }
+body { font-family:  "Microsoft YaHei", "微软雅黑", "SimSun", "宋体"; font-size: 12px; color: #000; line-height: 20px; background: #FFF; }
+a { color: #000; text-decoration: none; }
+a:hover { text-decoration: underline; }
+ol, ul, li { list-style-type: none; }
+img { border: none; vertical-align: top; }
 
-a {
-  color: #00B7FF;
-}
+.showPic li { float: left; margin: 0 10px 10px 0; }
