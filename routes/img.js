@@ -23,11 +23,11 @@ router.get('/', function(req, res, next) {
   if(getPicAttr['width']/getPicAttr['height'] <= setPicAttr['width']/setPicAttr['height']) {
     var setH = Math.ceil(setPicAttr['width'] * getPicAttr['height'] / getPicAttr['width']);
     var getCurPic = curPic.size(setPicAttr['width']);
-    var buffer = images(getCurPic, 0, (setH - setPicAttr['height']) / 2, setPicAttr['width'], setPicAttr['height']).encode("jpg", {operation: 80});
+    var buffer = images(getCurPic, 0, (setH - setPicAttr['height']) / 2, setPicAttr['width'], setPicAttr['height']).encode("jpg", {operation: 100});
   } else {
     var setW = Math.ceil(getPicAttr['width'] * setPicAttr['height'] / getPicAttr['height']);
     var getCurPic = curPic.size(setW);
-    var buffer = images(getCurPic, (setW - setPicAttr['width']) / 2, 0, setPicAttr['width'], setPicAttr['height']).encode("jpg", {operation: 80});
+    var buffer = images(getCurPic, (setW - setPicAttr['width']) / 2, 0, setPicAttr['width'], setPicAttr['height']).encode("jpg", {operation: 100});
   }
 
   res.writeHead(200, {"Content-Type": "image/jpeg"});

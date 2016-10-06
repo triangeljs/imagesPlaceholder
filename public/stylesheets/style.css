@@ -7,4 +7,5 @@ ol, ul, li { list-style-type: none; }
 img { border: none; vertical-align: top; }
 
 .showPic { clear: both; width: 100%; overflow: hidden; }
-.showPic li { text-align: center; float: left; margin-bottom: 10px; }
+.showPic li { text-align: center; float: left; margin: 10px 0; }
+.showPic li img:hover { box-shadow: 5px 5px 5px #888; }
