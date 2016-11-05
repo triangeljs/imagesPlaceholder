@@ -11,13 +11,14 @@
     <form method="POST" action="/" id="picForm">
       <input type="text" name="picWidth" placeholder="图片宽度" value="<%= picWidth %>">
       <input type="text" name="picHeight" placeholder="图片高度" value="<%= picHeight %>">
+      <% if (picTypeData.length) { %>
       <select name="picAttr">
-        <option value="0"<%if(picAttr == 0) {%> selected<%}%>>图片属性</option>
-        <option value="1"<%if(picAttr == 1) {%> selected<%}%>>城市发展</option>
-        <option value="2"<%if(picAttr == 2) {%> selected<%}%>>名胜古迹</option>
-        <option value="3"<%if(picAttr == 3) {%> selected<%}%>>人物专访</option>
-        <option value="4"<%if(picAttr == 4) {%> selected<%}%>>国新办特写</option>
+        <option value="0">图片属性</option>
+        <% picTypeData.forEach(function(picTypeList){ %>
+        <option value="<%= picTypeList.directory %>" <%if(picAttr == picTypeList.directory) {%> selected<%}%>><%= picTypeList.title %></option>
+        <% }) %>
       </select>
+      <% } %>
       <input type="button" value="图片合成" class="picBtn">
     </form>
   </div>

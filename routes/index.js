@@ -1,18 +1,18 @@
 var express = require('express'),
-  router = express.Router(),
-  path = require('path'),
-  fs = require('fs');
+    router = express.Router(),
+    path = require('path'),
+    fs = require('fs');
+var MongoClient = require('mongodb').MongoClient,
+    mongodbHost = 'mongodb://localhost:27017/images';
 
-var imgSrc = path.join(__dirname, '../', 'public/picCategory/'),
-  picCategory = {
-    '1': 'city',//城市发展
-    '2': 'travel',//名胜古迹
-    '3': 'figure',//人物专访
-    '4': 'scio'//国新办特写
-  }
+var imgSrc = path.join(__dirname, '../', 'public/picCategory/');
 
 router.get('/', function(req, res, next) {
-  res.render('index', { picWidth: '', picHeight: '', picAttr: 0, picArr: [] });
+  MongoClient.connect(mongodbHost, function(err, db) {
+    db.collection('picType').find().toArray(function(err, result) {
+      res.render('index', { picWidth: '', picHeight: '', picAttr: 0, picArr: [], picTypeData: result });
+    });
+  });
 });
 
 router.post('/', function(req, res, next) {
@@ -23,14 +23,23 @@ router.post('/', function(req, res, next) {
   }
   var picAttr = req.body.picAttr;
   
-  var imgArr = fs.readdirSync(imgSrc + picCategory[req.body.picAttr] + '/');
+  var folder_exists = fs.existsSync(imgSrc + picAttr);
+  if(!folder_exists) {
+    res.redirect('/');
+    return false;
+  }
+  var imgArr = fs.readdirSync(imgSrc + picAttr + '/');
   var picList = [];
   
   for(var i=0;i<imgArr.length;i++) {
-    picList.push('/'+ setPicAttr['width'] +'/'+ setPicAttr['height'] +'/'+ picCategory[picAttr] +'/?'+ (i+1));
+    picList.push('/'+ setPicAttr['width'] +'/'+ setPicAttr['height'] +'/'+ picAttr +'/?'+ (i+1));
   }
   
-  res.render('index', { picWidth: setPicAttr['width'], picHeight: setPicAttr['height'], picAttr: picAttr, picArr: picList.shuffle()});
+  MongoClient.connect(mongodbHost, function(err, db) {
+    db.collection('picType').find().toArray(function(err, result) {
+      res.render('index', { picWidth: setPicAttr['width'], picHeight: setPicAttr['height'], picAttr: picAttr, picArr: picList.shuffle(), picTypeData: result});
+    });
+  });
 });
 
 if (!Array.prototype.shuffle) {

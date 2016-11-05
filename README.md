@@ -24,3 +24,15 @@
 
 1. 默认用法的图片都放在public/pics目录下
 2. 分类用法的图片放在public/picCategory目录下对应的文件夹里
+
+## 图片占位后台管理地址
+
+    http://localhost:3000/login
+
+## 数据库使用的是Mongodb数据库
+
+1. 建立images数据库，在images数据库下有user和picType两个表.
+2. user表里有name,password,title三个字段。name是登录用户名、password是登录密码、title是用户中文名
+3. picType表里有title,directory两个字段。title是中文目录名称、directory是英文目录名称
+
+

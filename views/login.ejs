@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>管理页面</title>
+  <script type="text/javascript" src="http://www.china.com.cn/lib/jquery-1.11.0.min.js"></script>
+</head>
+<body>
+  <h1>图像合成管理系统</h1>
+  <form method="POST" action="/login" id="picForm">
+    <input type="text" name="name" placeholder="用户名" value="">
+    <input type="password" name="pd" placeholder="密码" value="">
+    <input type="button" value="登录" class="picBtn">
+  </form>
+  <script type="text/javascript">
+    $('.picBtn').on('click',function(){
+      $('#picForm').submit();
+    });
+  </script>
+</body>
+</html>
